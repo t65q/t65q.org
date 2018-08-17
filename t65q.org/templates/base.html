@@ -7,35 +7,72 @@
         <meta name="description" content="Scouts BSA Troop 65 Astoria (Queens) NY">
         <title>Scouts BSA Troop 65 Astoria (Queens) NY</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous">
         </script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" crossorigin="anonymous">
         </script>
+        <style>
+            /*div {
+                text-align: center;
+            }*/
+            span {
+                display: inline-block;
+                vertical-align: middle;
+            }
+            .outer-line {
+                width: 40%;
+                border-bottom: 1px solid #556b2f;
+            }
+        </style>
     </head>
 
     <body>
         <div class="container-responsive">
             <div class="card">
                 <div class="card-header text-center">
-                    <h3 class="card-title">Scouts BSA Troop 65 Astoria</h3>
-                    <h4 class="card-subtitle mb-2 text-muted">The power to change the world lives in your actions.</h4>
+                    <h2 class="card-title">Scouts BSA Troop 65 Astoria</h2>
+                    <h3 class="card-subtitle mb-2 text-muted">The power to change the world lives in your actions.</h3>
+                    <div>
+                        <span class="outer-line"></span>
+                        <span aria-hidden="true">⚜️</span>
+                        <span class="outer-line"></span>
+                    </div>
+                    {% set navigation_bar = [
+                        ('/', 'index', 'Home'),
+                        ('/events', 'events', 'Upcoming Events'),
+                        ('/about', 'about', 'About Us'),
+                        ('/contact', 'contact', 'Contact Us')    
+                    ] %}
+                    {% set active_page = active_page|default('index') %}
                     <ul class="nav nav-tabs card-header-tabs">
+                        {% for href, id, caption in navigation_bar %}
                         <li class="nav-item">
-                            <a class="nav-link active" href="#">Home</a>
+                            {% if id == active_page %}
+                            <a href="{{href|e}}" class="nav-link active">{{caption|e}}</a>
+                            {% else %}
+                            <a href="{{href|e}}" class="nav-link">{{caption|e}}</a>
+                            {% endif %}
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">News</a>
+                        {% endfor %}
+                        <li class="nav-item ml-auto">
+                            <a class="btn btn-primary" href="https://my.bsa.us/640taa0065mb">Join the Troop</a>
                         </li>
                     </ul>
                 </div>
                 <div class="card-body">
+                        
                         {% block content %}
         
                         {% endblock %}                
                 </div>
-                <div class="card-footer">
-
+                {% if active_page != "contact" %}
+                    {% set is_fragment = True %}
+                <div class="card-footer text-center">
+                    {% include "contact.html" %}
                 </div>
+                {% endif %}
+
             </div>
         </div>
     </body>

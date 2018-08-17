@@ -1,0 +1,38 @@
+{% if not is_fragment %}
+    {% extends 'base.html' %}
+    {% set active_page = "contact" %}
+{% endif %}
+{% block content %}
+<div class="row text-center">
+    <div class="container">
+        {% if not is_fragment %}
+        <h3>Contact Us</h3>
+        {% endif %}
+        <address>
+            <i class="fas fa-location-arrow"></i>
+            <strong>Scouts BSA Troop 65 Astoria</strong>
+            <br>
+            c/o Variety Boys and Girls Club
+            <br>
+            21-12 30th Road
+            <br>
+            Long Island City, New York 11102
+        </address>
+        <address>
+            <i class="fas fa-at"></i>
+            <strong>Email</strong>
+            <br>
+            <a href="mailto:troop65.astoria@gmail.com">troop65.astoria@gmail.com</a>
+        </address>
+        <address>
+            <a href="https://groups.google.com/forum/#!forum/troop-65-astoria/join"><strong>Join our Mailing List</strong></a>
+        </address>
+        <address>
+            <strong>Follow us</strong>
+            <br>
+            <a href="#"><i class="fab fa-facebook-square"></i></a>
+        </address>
+    </div>
+</div>
+
+{% endblock %}
