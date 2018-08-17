@@ -6,5 +6,13 @@
         "project_name": "t65q-org",
         "runtime": "python3.6",
         "s3_bucket": "zappa-b36sr8he2"
+    },
+    "prod": {
+        "app_function": "t65q.app.app",
+        "aws_region": "us-east-1",
+        "profile_name": "hf-putter",
+        "project_name": "t65q-org",
+        "runtime": "python3.6",
+        "s3_bucket": "zappa-b36sr8he2"
     }
 }
