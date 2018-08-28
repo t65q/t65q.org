@@ -3,8 +3,16 @@ from ics import Calendar
 from ics.timeline import Timeline
 from urllib.request import urlopen
 import arrow
+import feedparser
 
 app = Flask(__name__)
+
+RSS_FEEDS = {
+    'scoutmaster': 'https://blog.t65q.org/feeds/posts/default/-/Scoutmaster%27s%20Minute?alt=rss',
+    'troop': '',
+    'buffaloes': '',
+    'knights': ''
+}
 
 @app.route('/', methods=['GET'])
 def index():
@@ -43,3 +51,11 @@ def about():
 def contact():
 
     return render_template('contact.html')
+
+@app.route('/scoutmaster')
+def scoutmaster():
+    return get_news('scoutmaster')
+
+def get_news(publication):
+    feed = feedparser.parse(RSS_FEEDS[publication])
+    return render_template('pub.html', articles=feed['entries'], publication=publication)
