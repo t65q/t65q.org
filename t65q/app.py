@@ -14,15 +14,15 @@ RSS_FEEDS = {
         'long_title': "Scoutmaster's Minutes"
     },
     'troop': {
-        'href': '#',
+        'href': 'https://blog.t65q.org/feeds/posts/default/-/Troop%20Updates?alt=rss',
         'long_title': 'Troop Updates'
     },
     'buffaloes': {
-        'href': '#',
+        'href': 'https://blog.t65q.org/feeds/posts/default/-/Charging%20Buffaloes?alt=rss',
         'long_title': 'Charging Buffaloes'
     },
     'knights': {
-        'href': '#',
+        'href': 'https://blog.t65q.org/feeds/posts/default/-/Nuclear%20Knights?alt=rss',
         'long_title': 'Nuclear Knights'
     }
 }
