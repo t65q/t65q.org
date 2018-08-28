@@ -40,19 +40,36 @@
                     </div>
                     {% set navigation_bar = [
                         ('/about', 'about', 'About Us'),
+                        ('/news', 'news', 'Latest News'),
                         ('/events', 'events', 'Upcoming Events'),
                         ('/contact', 'contact', 'Contact Us')    
+                    ] %}
+                    {% set subnavigation_bar = [
+                        ('troop', 'Troop News'),
+                        ('scoutmaster', "Scoutmaster's Minutes"),
+                        ('buffaloes', 'Charging Buffaloes'),
+                        ('knights', 'Nuclear Knights')
                     ] %}
                     {% set active_page = active_page|default('index') %}
                     <ul class="nav nav-tabs card-header-tabs">
                         {% for href, id, caption in navigation_bar %}
-                        <li class="nav-item">
-                            {% if id == active_page %}
-                            <a href="{{href|e}}" class="nav-link active">{{caption|e}}</a>
+                            {% if id == 'events' %}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="/events" id="navbarDropdown">{{caption|e}}</a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                {% for publication, caption in subnavigation_bar %}
+                                    <a class="dropdown-item" href="?publication={{publication|e}}">{{caption|e}}</a>
+                                {% endfor %}
+                                </div>
+                            </li>
                             {% else %}
-                            <a href="{{href|e}}" class="nav-link">{{caption|e}}</a>
-                            {% endif %}
-                        </li>
+                            <li class="nav-item">
+                                {% if id == active_page %}
+                                <a href="{{href|e}}" class="nav-link active">{{caption|e}}</a>
+                                {% else %}
+                                <a href="{{href|e}}" class="nav-link">{{caption|e}}</a>
+                                {% endif %}
+                            </li>
                         {% endfor %}
                         <li class="nav-item ml-auto">
                             <a class="btn btn-primary" href="https://my.bsa.us/640taa0065mb">Join the Troop</a>
