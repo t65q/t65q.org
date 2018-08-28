@@ -54,8 +54,8 @@ def contact():
 
 @app.route('/scoutmaster')
 def scoutmaster():
-    return get_news('scoutmaster')
+    return get_news('scoutmaster', "Scoutmaster's Minutes")
 
-def get_news(publication):
+def get_news(publication, long_title):
     feed = feedparser.parse(RSS_FEEDS[publication])
-    return render_template('pub.html', articles=feed['entries'], publication=publication)
+    return render_template('pub.html', articles=feed['entries'], publication=publication, long_title=long_title)
