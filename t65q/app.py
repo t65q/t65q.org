@@ -7,11 +7,24 @@ import feedparser
 
 app = Flask(__name__)
 
+# to do: let's make this available to the template so it's not defined twice
 RSS_FEEDS = {
-    'scoutmaster': 'https://blog.t65q.org/feeds/posts/default/-/Scoutmaster%27s%20Minute?alt=rss',
-    'troop': '',
-    'buffaloes': '',
-    'knights': ''
+    'scoutmaster': {
+        'href': 'https://blog.t65q.org/feeds/posts/default/-/Scoutmaster%27s%20Minute?alt=rss',
+        'long_title': "Scoutmaster's Minutes"
+    },
+    'troop': {
+        'href': '#',
+        'long_title': 'Troop Updates'
+    },
+    'buffaloes': {
+        'href': '#',
+        'long_title': 'Charging Buffaloes'
+    },
+    'knights': {
+        'href': '#',
+        'long_title': 'Nuclear Knights'
+    }
 }
 
 @app.route('/', methods=['GET'])
@@ -52,10 +65,12 @@ def contact():
 
     return render_template('contact.html')
 
-@app.route('/scoutmaster')
-def scoutmaster():
-    return get_news('scoutmaster', "Scoutmaster's Minutes")
+@app.route('/news')
+def news():
+    publication = request.args['publication'] or 'troop'
+    return get_news(publication)
 
-def get_news(publication, long_title):
-    feed = feedparser.parse(RSS_FEEDS[publication])
+def get_news(publication):
+    feed = feedparser.parse(RSS_FEEDS[publication['href']])
+    long_title = RSS_FEEDS[publication['long_title']]
     return render_template('pub.html', articles=feed['entries'], publication=publication, long_title=long_title)
