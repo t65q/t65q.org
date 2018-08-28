@@ -53,9 +53,9 @@
                     {% set active_page = active_page|default('index') %}
                     <ul class="nav nav-tabs card-header-tabs">
                         {% for href, id, caption in navigation_bar %}
-                            {% if id == 'events' %}
+                            {% if id == 'news' %}
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="/events" id="navbarDropdown">{{caption|e}}</a>
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown">{{caption|e}}</a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 {% for publication, caption in subnavigation_bar %}
                                     <a class="dropdown-item" href="?publication={{publication|e}}">{{caption|e}}</a>
