@@ -71,6 +71,6 @@ def news():
     return get_news(publication)
 
 def get_news(publication):
-    feed = feedparser.parse(RSS_FEEDS[publication['href']])
-    long_title = RSS_FEEDS[publication['long_title']]
+    feed = feedparser.parse(RSS_FEEDS[publication]['href'])
+    long_title = RSS_FEEDS[publication]['long_title']
     return render_template('pub.html', articles=feed['entries'], publication=publication, long_title=long_title)
