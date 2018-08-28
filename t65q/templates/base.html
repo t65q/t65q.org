@@ -56,7 +56,7 @@
                         {% for href, id, caption in navigation_bar %}
                             {% if id == 'news' %}
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{caption|e}}</a>
+                                <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{caption|e}}</a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 {% for publication, caption in subnavigation_bar %}
                                     <a class="dropdown-item" href="/news?publication={{publication|e}}">{{caption|e}}</a>
