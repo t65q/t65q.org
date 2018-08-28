@@ -11,7 +11,7 @@ def index():
     # To do: async this?
     
 
-    return render_template('index.html')
+    return render_template('about.html')
 
 @app.route('/events', methods=['GET'])
 def events():

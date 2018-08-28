@@ -39,9 +39,8 @@
                         <span class="outer-line"></span>
                     </div>
                     {% set navigation_bar = [
-                        ('/', 'index', 'Home'),
-                        ('/events', 'events', 'Upcoming Events'),
                         ('/about', 'about', 'About Us'),
+                        ('/events', 'events', 'Upcoming Events'),
                         ('/contact', 'contact', 'Contact Us')    
                     ] %}
                     {% set active_page = active_page|default('index') %}
