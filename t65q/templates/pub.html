@@ -8,6 +8,8 @@
         <h4>{{ article.title }}</h4>
         <i>{{ article.published }}</i>
         <p>{{ article.summary|safe}}</p>
+        {% else %}
+        <p>There's nothing here yet. Check back later.</p>
         {% endfor %}
     </div>
 </div>
