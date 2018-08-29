@@ -67,13 +67,15 @@ def contact():
 
 @app.route('/news')
 def news():
-    try:
-        publication = request.args['publication']
-    except KeyError:
-        publication = 'troop'
+    publication = request.args['publication']
     return get_news(publication)
 
 def get_news(publication):
-    feed = feedparser.parse(RSS_FEEDS[publication]['href'])
-    long_title = RSS_FEEDS[publication]['long_title']
+    try:
+        feed = feedparser.parse(RSS_FEEDS[publication]['href'])
+        long_title = RSS_FEEDS[publication]['long_title']
+    except KeyError:
+        feed = feedparser.parse(RSS_FEEDS['troop']['href'])
+        long_title = RSS_FEEDS['troop']['long_title']
+    
     return render_template('pub.html', articles=feed['entries'], publication=publication, long_title=long_title)
