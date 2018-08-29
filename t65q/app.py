@@ -67,7 +67,10 @@ def contact():
 
 @app.route('/news')
 def news():
-    publication = request.args['publication'] or 'troop'
+    try:
+        publication = request.args['publication']
+    except KeyError:
+        publication = 'troop'
     return get_news(publication)
 
 def get_news(publication):
