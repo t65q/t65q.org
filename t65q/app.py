@@ -2,8 +2,10 @@ from flask import Flask, render_template, request
 from ics import Calendar
 from ics.timeline import Timeline
 from urllib.request import urlopen
+from jinja2 import Environment
 import arrow
 import feedparser
+import jinja2
 
 app = Flask(__name__)
 
@@ -26,6 +28,8 @@ RSS_FEEDS = {
         'long_title': 'Nuclear Knights'
     }
 }
+
+env = Environment()
 
 @app.route('/', methods=['GET'])
 def index():
